@@ -8,16 +8,16 @@ import pandas
 data = pandas.read_csv("nato_phonetic_alphabet.csv")
 phonetic_alphabet = {row.letter: row.code for (index, row) in data.iterrows()}
 
-user_input = input("Enter a word: ").upper()
-result = []
 
-while len(result) == 0:
+def generate_phonetic():
+    user_input = input("Enter a word: ").upper()
     try:
         result = [phonetic_alphabet[letter] for letter in user_input]
     except KeyError:
         print("Sorry, only letters in the alphabet please.")
-        user_input = input("Enter a word: ").upper()
+        generate_phonetic()
     else:
         print(result)
 
 
+generate_phonetic()
